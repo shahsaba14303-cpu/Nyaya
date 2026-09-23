@@ -763,7 +763,7 @@
     }
 
     function HowItWorks({ go }) {
-      const steps = ["KNOWN FACTS", "CHECK RULES", "MATCH CONDITIONS", "GENERATE NEW FACT", "ADD TO KNOWLEDGE BASE", "REPEAT", "NO NEW FACTS", "STOP"];
+      const steps = ["KNOWN FACTS", "CHECK RULES", "MATCH CONDITIONS", "GENERATE NEW FACT", "ADD NEW FACT TO KNOWN FACTS", "REPEAT", "NO NEW FACTS", "STOP"];
       const pseudo = `START
 
 Load facts
@@ -816,7 +816,7 @@ END`;
 
         <div class="glass rounded-2xl p-7 md:p-9 mb-6 shadow-2xl">
           <h2 class="font-display text-2xl md:text-3xl text-[var(--gold-bright)] mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Forward chaining, in plain language</h2>
-          <p class="text-[var(--cream)] text-base md:text-lg leading-relaxed font-normal">Forward chaining works data-first: it looks at what is already known, checks every rule to see whether its condition (antecedent) is satisfied by a known fact, and if so, adds the rule's conclusion (consequent) as a new fact — substituting the rule's variable with the matched entity. This repeats, pass after pass, until a full pass adds nothing new. That fixed point is the stopping condition, which also prevents infinite loops on circular rule chains.</p>
+          <p class="text-[var(--cream)] text-base md:text-lg leading-relaxed font-normal">Forward chaining works data-first: it looks at what is already known, checks every rule to see whether its condition (antecedent) is satisfied by a known fact, and if so, adds the rule's conclusion (consequent) as a new fact — substituting the rule's variable with the matched entity. This repeats, pass after pass, until a full pass adds nothing new. That fixed point is the stopping condition. Duplicate prevention ensures that already-known facts are not added again, while an iteration limit provides an additional safety guard against runaway circular rule chains.</p>
         </div>
 
         <div class="glass rounded-2xl p-7 md:p-9 mb-6 shadow-2xl">
@@ -831,7 +831,9 @@ END`;
             <span class="text-[var(--gold-bright)] font-bold">— R1: Smoke(x)→Fire(x) →</span>
             <code class="px-4 py-2.5 rounded-xl font-bold text-[var(--cream)] border border-[var(--glass-brd)] shadow-md" style=${{ background: "rgba(6,25,23,0.82)" }}>Fire(Mountain)</code>
             <span class="text-[var(--gold-bright)] font-bold">— R2: Fire(x)→Hot(x) →</span>
-            <code class="px-4 py-2.5 rounded-xl font-bold text-[var(--gold-bright)] border border-[rgba(201,161,92,0.5)] shadow-md" style=${{ background: "rgba(6,25,23,0.82)" }}>Hot(Mountain)</code>
+            <code class="px-4 py-2.5 rounded-xl font-bold text-[var(--cream)] border border-[var(--glass-brd)] shadow-md" style=${{ background: "rgba(6,25,23,0.82)" }}>Hot(Mountain)</code>
+            <span class="text-[var(--gold-bright)] font-bold">— R3: Hot(x)→Dangerous(x) →</span>
+            <code class="px-4 py-2.5 rounded-xl font-bold text-[var(--gold-bright)] border border-[rgba(201,161,92,0.5)] shadow-md" style=${{ background: "rgba(6,25,23,0.82)" }}>Dangerous(Mountain)</code>
           </div>
         </div>
 
