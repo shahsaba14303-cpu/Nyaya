@@ -57,3 +57,15 @@ node tests/inference.test.js
 ├── design.md                   # UI design tokens and visual system
 └── memory.md                   # Development history and decision logs
 `
+
+---
+
+## Conclusion
+
+NyāyaLogic demonstrates how selected reasoning-oriented ideas inspired by the Nyāya tradition can be represented through a deterministic computational inference model. The system accepts explicit facts and rules, applies forward chaining with variable substitution, and produces derived facts together with a step-by-step reasoning trace.
+
+The project provides an interactive way to understand the relationship between traditional reasoning concepts and rule-based computational logic. Its deterministic design makes every inference transparent and reproducible, without relying on black-box AI or automated rule learning.
+
+The implemented system was validated using 10 automated test cases covering basic, multi-step, multiple-fact, duplicate, circular, empty-input, and invalid-input scenarios, with all 10 tests passing.
+
+The current implementation is intentionally limited to a simplified rule-based model and does not represent the complete philosophical or logical system of classical Nyāya. Future extensions could include richer predicates, backward chaining, persistence, and more expressive reasoning.
